@@ -287,6 +287,8 @@
     background: rgba(242,212,212,0.1);
     position: relative;
     flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .photo-slot:hover {
@@ -430,10 +432,12 @@
             <div class="cover-heart">❤️</div>
 
             <div class="cover-photo-frame photo-slot" onclick="triggerUpload('cover-photo')" id="cover-frame">
-              <input type="file" class="file-input" id="cover-photo" accept="image/*" onchange="loadPhoto(this,'cover-frame')">
+             <!-- <input type="file" class="file-input" id="cover-photo" accept="image/*" onchange="loadPhoto(this,'cover-frame')">
+              --> 
+             <img src="он.jpeg" alt="Обложка">
               <div class="upload-hint">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                фото
+                <!--<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                --> 
               </div>
             </div>
 
@@ -451,36 +455,13 @@
           <div class="whos-header" style="margin-bottom:10px;">ТЕБЕ...</div>
           <div class="divider"></div>
 
-          <div class="photo-slot" style="aspect-ratio:3/4; width:60%; margin-bottom:14px;" onclick="triggerUpload('girl-photo')" id="girl-frame">
-            <input type="file" class="file-input" id="girl-photo" accept="image/*" onchange="loadPhoto(this,'girl-frame')">
+          <div class="photo-slot" style="aspect-ratio:3/4; width:70%; margin-bottom:14px;" onclick="triggerUpload('girl-photo')" id="girl-frame">
+            <!-- <input type="file" class="file-input" id="girl-photo" accept="image/*" onchange="loadPhoto(this,'girl-frame')">
+            -->
+            <img src="карточки.jpeg" alt="ОН">
             <div class="upload-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-              загрузить фото
-            </div>
-          </div> 
-          
-<!--
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
-            <div class="polaroid rotate-left">
-              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child1-photo')" id="child1-frame">
-                <input type="file" class="file-input" id="child1-photo" accept="image/*" onchange="loadPhoto(this,'child1-frame')">
-                <div class="upload-hint" style="font-size:8px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
-                  его фото
-                </div>
-              </div>
-            </div>
-            <div class="polaroid rotate-right">
-              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child2-photo')" id="child2-frame">
-                <input type="file" class="file-input" id="child2-photo" accept="image/*" onchange="loadPhoto(this,'child2-frame')">
-                <div class="upload-hint" style="font-size:8px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
-                  моё фото
-                </div>
-              </div>
             </div>
           </div>
-        -->
 
           <textarea class="editable body-text" oninput="autoResize(this)">Жаным,
 Эта книга — наша история. История, которая началась с одной задачи по математике, а превратилась в биение одного сердца на двоих.
@@ -495,10 +476,11 @@
           <div class="divider"></div>
 
           <div class="photo-slot" style="aspect-ratio:3/4; width:100%; margin-bottom:14px;" onclick="triggerUpload('boy-photo')" id="boy-frame">
-            <input type="file" class="file-input" id="boy-photo" accept="image/*" onchange="loadPhoto(this,'boy-frame')">
+            <!--<input type="file" class="file-input" id="boy-photo" accept="image/*" onchange="loadPhoto(this,'boy-frame')">
+            -->
+            <img src="zhan.jpeg" alt="ОН">
             <div class="upload-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-              его фото
+    
             </div>
           </div>
 
@@ -521,19 +503,22 @@
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
             <div class="polaroid rotate-left">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child1-photo')" id="child1-frame">
-                <input type="file" class="file-input" id="child1-photo" accept="image/*" onchange="loadPhoto(this,'child1-frame')">
+                <!--<input type="file" class="file-input" id="child1-photo" accept="image/*" onchange="loadPhoto(this,'child1-frame')">
+                -->
+                 <img src="детство1.jpeg" alt="Детство">
                 <div class="upload-hint" style="font-size:8px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
-                  его фото
+                  <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+                  его детство -->
                 </div>
               </div>
             </div>
             <div class="polaroid rotate-right">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child2-photo')" id="child2-frame">
-                <input type="file" class="file-input" id="child2-photo" accept="image/*" onchange="loadPhoto(this,'child2-frame')">
+                <!-- <input type="file" class="file-input" id="child2-photo" accept="image/*" onchange="loadPhoto(this,'child2-frame')"> -->
+                <img src="детство2.jpeg" alt="Детство">
                 <div class="upload-hint" style="font-size:8px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
-                  моё фото
+                  <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+                  моё детство -->
                 </div>
               </div>
             </div>
@@ -564,11 +549,13 @@
           <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Любимый будущий муж 😎"></div></div>
           <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Факт..."></div></div>
 
-          <div class="photo-slot" style="aspect-ratio:3/4; width:50%; margin-top:14px;" onclick="triggerUpload('fact-photo')" id="fact-frame">
-            <input type="file" class="file-input" id="fact-photo" accept="image/*" onchange="loadPhoto(this,'fact-frame')">
+          <div class="photo-slot" style="aspect-ratio:3/4; width:60%; margin-top:14px auto 0; " onclick="triggerUpload('fact-photo')" id="fact-frame">
+            <!-- <input type="file" class="file-input" id="fact-photo" accept="image/*" onchange="loadPhoto(this,'fact-frame')"> -->
+            
+             <img src="он2.jpeg" alt="ОН">
             <div class="upload-hint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
-              его фото
+              <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+              его фото -->
             </div>
           </div>
 
@@ -591,10 +578,9 @@
 Это мы.
 Наша история. Такая странная, смешная, медленная и одновременно невероятная.
 
-Кто бы вообще мог подумать, что всё начнётся с какой-то задачи по учебе?
+Кто бы вообще мог подумать, что всё начнётся с какой-то задачи по математике?
 
-Я поступила в университет, все учились онлайн, каждый жил будто в своём маленьком мире. Но почему-то именно тогда среди сотен людей жизнь столкнула меня с тобой. Сначала — просто сообщения. 
-Потом созвоны. Потом разговоры по видеозвонку где только ты показываешь свое лицо, когда уже давно не было никаких тем, мы просто исчезали пока не найдется тема для разговора.
+Я поступила в университет, все учились онлайн, каждый жил будто в своём маленьком мире. Но почему-то именно тогда среди сотен людей жизнь столкнула меня с тобой. Сначала — просто сообщения. Потом созвоны. Потом разговоры по видео до ночи, когда уже давно не было никаких тем, но никто не хотел первым отключаться.
 
 И знаешь, что до сих пор смешит меня больше всего?
 То, как ты боялся нашей первой встречи.
@@ -639,16 +625,19 @@
 
           <div style="display:flex; gap:4px; background:#111; padding:4px; border-radius:2px; margin-top:10px;">
             <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film1')" id="film1-frame">
-              <input type="file" class="file-input" id="film1" accept="image/*" onchange="loadPhoto(this,'film1-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+              <!-- <input type="file" class="file-input" id="film1" accept="image/*" onchange="loadPhoto(this,'film1-frame')"> -->
+              <img src="мы1.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
             </div>
             <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film2')" id="film2-frame">
-              <input type="file" class="file-input" id="film2" accept="image/*" onchange="loadPhoto(this,'film2-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+              <!-- <input type="file" class="file-input" id="film2" accept="image/*" onchange="loadPhoto(this,'film2-frame')"> -->
+              <img src="мы2.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
             </div>
             <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film3')" id="film3-frame">
-              <input type="file" class="file-input" id="film3" accept="image/*" onchange="loadPhoto(this,'film3-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+              <!-- <input type="file" class="file-input" id="film3" accept="image/*" onchange="loadPhoto(this,'film3-frame')"> -->
+              <img src="мы3.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
             </div>
           </div>
 
@@ -661,29 +650,33 @@
           <div class="map-grid">
             <div class="map-item">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place1')" id="place1-frame">
-                <input type="file" class="file-input" id="place1" accept="image/*" onchange="loadPhoto(this,'place1-frame')">
-                <div class="upload-hint" style="font-size:8px;">📍</div>
+                <!-- <input type="file" class="file-input" id="place1" accept="image/*" onchange="loadPhoto(this,'place1-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта2.jpeg" alt="ОН">
               </div>
               <div class="map-label">наша первая встреча</div>
             </div>
             <div class="map-item">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place2')" id="place2-frame">
-                <input type="file" class="file-input" id="place2" accept="image/*" onchange="loadPhoto(this,'place2-frame')">
-                <div class="upload-hint" style="font-size:8px;">📍</div>
+                <!-- <input type="file" class="file-input" id="place2" accept="image/*" onchange="loadPhoto(this,'place2-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта1.jpeg" alt="ОН">
               </div>
               <div class="map-label">начало нашей истории</div>
             </div>
             <div class="map-item">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place3')" id="place3-frame">
-                <input type="file" class="file-input" id="place3" accept="image/*" onchange="loadPhoto(this,'place3-frame')">
-                <div class="upload-hint" style="font-size:8px;">📍</div>
+                <!-- <input type="file" class="file-input" id="place3" accept="image/*" onchange="loadPhoto(this,'place3-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта3.jpeg" alt="ОН">
               </div>
               <div class="map-label">наше любимое место</div>
             </div>
             <div class="map-item">
               <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place4')" id="place4-frame">
-                <input type="file" class="file-input" id="place4" accept="image/*" onchange="loadPhoto(this,'place4-frame')">
-                <div class="upload-hint" style="font-size:8px;">📍</div>
+                <!-- <input type="file" class="file-input" id="place4" accept="image/*" onchange="loadPhoto(this,'place4-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта3.jpeg" alt="ОН">
               </div>
               <div class="map-label">наш первый поцелуй</div>
             </div>
@@ -697,19 +690,23 @@
 
       <!-- SPREAD 4: ПОЧЕМУ / РАХМЕТ -->
       <div class="spread" id="spread-4">
-        <div class="page-left">
+               <div class="page-left">
           <div class="stitch-left"></div>
           <div class="section-title" style="font-size:20px; margin-bottom:6px;">Почему<br><span style="font-style:italic; color:var(--rose);">моё сердце</span></div>
           <div class="section-title" style="font-size:17px; margin-bottom:12px;">выбрало тебя?</div>
-
+ 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('why1')" id="why1-frame">
-              <input type="file" class="file-input" id="why1" accept="image/*" onchange="loadPhoto(this,'why1-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+            <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('why1')" id="why1-frame">
+              <!-- <input type="file" class="file-input" id="why1" accept="image/*" onchange="loadPhoto(this,'why1-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'why1-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="кок тобе.jpeg" alt="ОН">
             </div>
             <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('why2')" id="why2-frame">
-              <input type="file" class="file-input" id="why2" accept="image/*" onchange="loadPhoto(this,'why2-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+              <!-- <input type="file" class="file-input" id="why2" accept="image/*" onchange="loadPhoto(this,'why2-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'why2-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы зеркало.jpeg" alt="ОН">
             </div>
           </div>
 
@@ -723,17 +720,21 @@
           <div class="page-num">07</div>
         </div>
 
-        <div class="page-right">
+          <div class="page-right">
           <div class="handwritten" style="font-size:22px; margin-bottom:12px;">Рахмет, жаным..</div>
-
+ 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('thanks1')" id="thanks1-frame">
-              <input type="file" class="file-input" id="thanks1" accept="image/*" onchange="loadPhoto(this,'thanks1-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div>
+            <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('thanks1')" id="thanks1-frame">
+              <!-- <input type="file" class="file-input" id="thanks1" accept="image/*" onchange="loadPhoto(this,'thanks1-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'thanks1-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div> -->
+              <img src="сноуборд.jpeg" alt="ОН">
             </div>
             <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('thanks2')" id="thanks2-frame">
-              <input type="file" class="file-input" id="thanks2" accept="image/*" onchange="loadPhoto(this,'thanks2-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div>
+              <!-- <input type="file" class="file-input" id="thanks2" accept="image/*" onchange="loadPhoto(this,'thanks2-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'thanks2-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div> -->
+              <img src="мы торт.jpeg" alt="ОН">
             </div>
           </div>
 
@@ -783,23 +784,23 @@
           <div style="font-size:9px; letter-spacing:3px; color:var(--warm-gray); text-transform:uppercase; margin-bottom:8px; font-family:'Cormorant Garamond',serif;">Письмо из будущего</div>
           <div class="handwritten" style="font-size:14px; margin-bottom:10px;">Жаным,</div>
 
-          <textarea class="editable body-text" style="font-size:11.5px;" oninput="autoResize(this)">Пишу тебе из нашего будущего. Сейчас поздний вечер, ты опять уснул раньше меня прямо на кровати под какой-то задачи своей работы, который «точно не закончишь сегодня». Спойлер: не сделал.
+          <textarea class="editable body-text" style="font-size:11.5px;" oninput="autoResize(this)">Пишу тебе из нашего будущего. Сейчас поздний вечер, ты опять уснул раньше меня прямо на диване под какой-то фильм, который «точно досмотришь». Спойлер: не досмотришь. Никогда.
 А я сижу рядом, смотрю на тебя и думаю, как странно устроена жизнь — когда-то мы были просто двумя людьми, которые ещё не знали, насколько сильно смогут изменить мир друг друга.
 
-Через 5–10 лет ты станешь ещё больше притягательным. Не той идеальной картинной красотой, а настоящим — уверенный, спокойный, тёплый. У тебя появится этот взгляд человека, который уже многое пережил, но не стал холодным. И знаешь, что мне нравится больше всего? Даже спустя годы ты всё так же будешь пытаться расмешить меня и поверь, я буду смеяться громче всех.
+Через 5–10 лет ты станешь ещё красивее. Не той идеальной картинной красотой, а настоящей — уверенной, спокойной, тёплой. У тебя появится этот взгляд человека, который уже многое пережил, но не стал холодным. И знаешь, что мне нравится больше всего? Даже спустя годы ты всё так же будешь смеяться над своими же шутками громче всех.
 
 У нас впереди столько моментов, о которых ты пока даже не подозреваешь.
 
-Мы будем ехать ночью в машине без цели, спорить из-за глупости и в итоге петь вдвоём что-то максимально странное и старое.
-Будем делать ремонт и чуть не разведёмся из-за того, какого цвета должны быть шторы и кафель. (Ты проиграешь, смирись заранее.)
-Будем заказывать еду и говорить «только ничего вредного», а через 20 минут на столе окажется фастфуд и кола.
+Мы будем ехать ночью в машине без цели, спорить из-за музыки и в итоге петь вдвоём что-то максимально странное и старое.
+Будем делать ремонт и чуть не разведёмся из-за того, какого цвета должны быть шторы. (Ты проиграешь, смирись заранее.)
+Будем заказывать еду и говорить «только ничего лишнего», а через 20 минут на столе окажется еды на десятерых.
 Будем уставшими, сонными, иногда раздражёнными, но всё равно искать друг друга взглядом в комнате, как будто дом — это не место, а человек.
 
-Ты ещё не знаешь, но однажды появится фото, которое я буду хранить как сокровище. Мы позируем на камеру как семья - я, ты и наши дети. И именно тогда я окончательно пойму: вот он, тот который сделал меня самой счастливой. Не идеальный, не глянцевый, а настоящий.
+Ты ещё не знаешь, но однажды появится фото, которое я буду хранить как сокровище. Ты там не позируешь, не смотришь в камеру — просто улыбаешься мне на кухне. И именно тогда я окончательно пойму: вот она, моя жизнь. Не идеальная, не глянцевая, а настоящая.
 
 А ещё у меня для тебя несколько предсказаний из будущего:
 
-— Ты всё-таки начнёшь говорить: «ой, спина». (раньше времени)
+— Ты всё-таки начнёшь говорить: «ой, спина».
 — У тебя появится любимая кружка, и ты будешь злиться, если я возьму её первой.
 — Мы минимум один раз потеряемся в отпуске из-за твоего «я и так знаю дорогу».
 — Ты будешь делать вид, что не любишь фотографии, но именно у тебя в телефоне окажется 700 моих случайных фото.
@@ -827,21 +828,25 @@
           <div class="handwritten" style="font-size:19px; margin-bottom:12px;">Наши моменты...</div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('gal1')" id="gal1-frame">
-              <input type="file" class="file-input" id="gal1" accept="image/*" onchange="loadPhoto(this,'gal1-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal1')" id="gal1-frame">
+              <!-- <input type="file" class="file-input" id="gal1" accept="image/*" onchange="loadPhoto(this,'gal1-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы глина.jpeg" alt="ОН">
             </div>
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('gal2')" id="gal2-frame">
-              <input type="file" class="file-input" id="gal2" accept="image/*" onchange="loadPhoto(this,'gal2-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal2')" id="gal2-frame">
+              <!-- <input type="file" class="file-input" id="gal2" accept="image/*" onchange="loadPhoto(this,'gal2-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="сноуборд2.jpeg" alt="ОН">
             </div>
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('gal3')" id="gal3-frame">
-              <input type="file" class="file-input" id="gal3" accept="image/*" onchange="loadPhoto(this,'gal3-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal3')" id="gal3-frame">
+              <!-- <input type="file" class="file-input" id="gal3" accept="image/*" onchange="loadPhoto(this,'gal3-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы предложение.jpeg" alt="ОН">
             </div>
-            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('gal4')" id="gal4-frame">
-              <input type="file" class="file-input" id="gal4" accept="image/*" onchange="loadPhoto(this,'gal4-frame')">
-              <div class="upload-hint" style="font-size:8px;">📷</div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal4')" id="gal4-frame">
+              <!-- <input type="file" class="file-input" id="gal4" accept="image/*" onchange="loadPhoto(this,'gal4-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы др.jpeg" alt="ОН">
             </div>
           </div>
 
@@ -855,7 +860,7 @@
 
           <div class="divider" style="margin:14px auto; width:46px;"></div>
 
-          <textarea class="editable body-text" style="text-align:center; font-size:12px; color:var(--warm-gray);" oninput="autoResize(this)" placeholder="Саған деген сезімді сөзбен жеткізу қиын... Бірақ осы кітаптың әр беті — "></textarea>
+          <textarea class="editable body-text" style="text-align:center; font-size:12px; color:var(--warm-gray);" oninput="autoResize(this)" placeholder="Саған деген сезімді сөзбен жеткізу қиын... Бірақ осы кітаптың әр беті — менің жүрегімнің тіршілігі."></textarea>
 
           <div style="margin-top:16px;">
             <input class="inline-edit" style="text-align:center; font-family:'Dancing Script',cursive; font-size:19px; color:var(--rose);" placeholder="Саған арналады">
