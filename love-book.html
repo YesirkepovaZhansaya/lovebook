@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY Love ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f0;
+    --blush: #f2d4d4;
+    --rose: #c9696a;
+    --deep-rose: #9b3a3b;
+    --charcoal: #2c2020;
+    --warm-gray: #8a7070;
+    --gold: #c4a882;
+    --paper: #fdf8f3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--charcoal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(155,58,59,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,105,106,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(196,168,130,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .heart-bg {
+    position: fixed;
+    color: rgba(201,105,106,0.15);
+    animation: floatUp linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+  }
+
+  .scene {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book-container {
+    position: relative;
+    width: min(760px, 98vw);
+    height: min(560px, 90vh);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  }
+
+  .book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .spread {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .spread.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* COVER */
+  .spread.cover {
+    border-radius: 4px 16px 16px 4px;
+    overflow: hidden;
+  }
+
+  .cover-page {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a0f0f 0%, #2c1a1a 40%, #1a0f0f 100%);
+  }
+
+  .cover-border {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(196,168,130,0.3);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .cover-border::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(196,168,130,0.15);
+  }
+
+  .cover-content {
+    position: relative;
+    text-align: center;
+    padding: 24px 40px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cover-date {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .cover-heart {
+    font-size: 26px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    margin-bottom: 14px;
+  }
+
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* Portrait cover photo */
+  .cover-photo-frame {
+    width: 150px;
+    height: 200px;
+    border: 2px solid var(--gold);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: 4px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 19px;
+    color: var(--rose);
+  }
+
+  .start-hint {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.6;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 0.35; }
+    50% { opacity: 0.75; }
+  }
+
+  /* REGULAR PAGES - SCROLLABLE */
+  .page-left, .page-right {
+    width: 50%;
+    height: 100%;
+    background: var(--paper);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 30px 26px 44px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201,105,106,0.3) transparent;
+  }
+
+  .page-left::-webkit-scrollbar,
+  .page-right::-webkit-scrollbar { width: 3px; }
+  .page-left::-webkit-scrollbar-thumb,
+  .page-right::-webkit-scrollbar-thumb { background: rgba(201,105,106,0.3); border-radius: 2px; }
+
+  .page-left {
+    border-right: 1px solid rgba(180,150,130,0.3);
+    border-radius: 4px 0 0 4px;
+    background: linear-gradient(to right, #fdf8f2 0%, #faf5ef 100%);
+    box-shadow: -6px 0 20px rgba(0,0,0,0.35), inset -2px 0 8px rgba(0,0,0,0.04);
+  }
+
+  .page-right {
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(to left, #fdf8f2 0%, #faf5ef 100%);
+    box-shadow: 6px 0 30px rgba(0,0,0,0.45), inset 2px 0 8px rgba(0,0,0,0.04);
+  }
+
+  .page-num {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--warm-gray);
+    margin-top: 20px;
+    padding-bottom: 4px;
+  }
+  .page-right .page-num { text-align: left; }
+
+  /* TYPOGRAPHY */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .handwritten {
+    font-family: 'Dancing Script', cursive;
+    font-size: 19px;
+    color: var(--deep-rose);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  .divider {
+    width: 38px;
+    height: 1px;
+    background: var(--gold);
+    margin: 10px 0;
+    opacity: 0.7;
+  }
+
+  /* PHOTO SLOTS — portrait by default */
+  .photo-slot {
+    border: 2px dashed rgba(201,105,106,0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+    background: rgba(242,212,212,0.1);
+    position: relative;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .photo-slot:hover {
+    border-color: var(--rose);
+    transform: scale(1.02);
+  }
+
+  .photo-slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .upload-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--rose);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    pointer-events: none;
+    text-align: center;
+    padding: 4px;
+  }
+
+  .upload-hint svg { width: 20px; height: 20px; opacity: 0.6; }
+  .photo-slot.has-photo .upload-hint { display: none; }
+
+  /* Polaroid */
+  .polaroid {
+    background: white;
+    padding: 6px 6px 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .polaroid.rotate-left { transform: rotate(-3deg); }
+  .polaroid.rotate-right { transform: rotate(2.5deg); }
+
+  /* Fact items */
+  .fact-item { display:flex; align-items:flex-start; gap:8px; margin-bottom:8px; }
+  .fact-arrow { color:var(--rose); font-size:11px; margin-top:2px; flex-shrink:0; }
+  .fact-text { font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--charcoal); font-style:italic; line-height:1.5; flex:1; }
+
+  /* Love list */
+  .love-list { list-style:none; counter-reset:item; }
+  .love-list li {
+    font-size:12px; color:var(--charcoal); padding:5px 0;
+    border-bottom:1px solid rgba(180,150,130,0.2);
+    display:flex; align-items:baseline; gap:8px;
+    font-family:'Cormorant Garamond',serif;
+  }
+  .love-list li::before { content:counter(item); counter-increment:item; font-size:9px; color:var(--rose); min-width:12px; }
+
+  /* Editable */
+  .editable {
+    border:none; background:transparent;
+    font-family:inherit; font-size:inherit; color:inherit; line-height:inherit;
+    width:100%; resize:none; outline:none; cursor:text;
+  }
+  .editable:focus { background:rgba(201,105,106,0.03); border-radius:2px; }
+
+  input.inline-edit {
+    border:none; border-bottom:1px solid rgba(201,105,106,0.3);
+    background:transparent; font-family:inherit; font-size:inherit; color:inherit;
+    outline:none; width:100%; padding:0;
+  }
+
+  .file-input { display:none; }
+
+  /* Stitch */
+  .stitch-left {
+    position:absolute; left:8px; top:20px; bottom:20px; width:3px;
+    background:repeating-linear-gradient(to bottom,transparent 0,transparent 4px,rgba(196,168,130,0.25) 4px,rgba(196,168,130,0.25) 10px);
+    pointer-events:none;
+  }
+
+  .whos-header {
+    font-family:'Playfair Display',serif; font-size:30px; font-weight:700;
+    color:var(--charcoal); line-height:1; margin-bottom:6px;
+  }
+  .whos-header span { color:var(--rose); font-style:italic; }
+
+  .map-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .map-item { text-align:center; }
+  .map-label { font-family:'Cormorant Garamond',serif; font-size:9px; color:var(--warm-gray); font-style:italic; margin-top:4px; }
+
+  .section-box { background:rgba(155,58,59,0.07); border-radius:3px; padding:10px 12px; margin-bottom:10px; }
+  .section-box-label { font-family:'Cormorant Garamond',serif; font-size:9px; letter-spacing:2px; color:var(--rose); text-transform:uppercase; margin-bottom:6px; }
+
+  /* NAV */
+  .nav {
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
+    display:flex; align-items:center; gap:18px; z-index:100;
+  }
+  .nav-btn {
+    width:44px; height:44px; border-radius:50%;
+    border:1px solid rgba(196,168,130,0.4); background:rgba(44,32,32,0.85);
+    backdrop-filter:blur(10px); color:var(--gold); font-size:17px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:all 0.3s;
+  }
+  .nav-btn:hover { background:rgba(201,105,106,0.3); border-color:var(--rose); transform:scale(1.1); }
+  .nav-btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; }
+
+  .page-indicator {
+    font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:3px;
+    color:var(--gold); opacity:0.7; min-width:60px; text-align:center;
+  }
+
+  .top-label {
+    position:fixed; top:18px; left:50%; transform:translateX(-50%);
+    font-family:'Cormorant Garamond',serif; font-size:10px; letter-spacing:4px;
+    color:rgba(196,168,130,0.45); text-transform:uppercase; z-index:100; white-space:nowrap;
+  }
+
+  textarea { overflow:hidden; }
+</style>
+</head>
+<body>
+
+<div id="hearts-container"></div>
+<div class="top-label">Mahabbatym · 7 мая</div>
+
+<div class="scene">
+  <div class="book-container">
+    <div class="book">
+
+      <!-- SPREAD 0: COVER -->
+      <div class="spread cover active" id="spread-0">
+        <div class="cover-page">
+          <div class="cover-border"></div>
+          <div class="cover-content">
+            <div class="cover-date">moment / love / story</div>
+            <div class="cover-heart">❤️</div>
+
+            <div class="cover-photo-frame photo-slot" onclick="triggerUpload('cover-photo')" id="cover-frame">
+             <!-- <input type="file" class="file-input" id="cover-photo" accept="image/*" onchange="loadPhoto(this,'cover-frame')">
+              --> 
+             <img src="он.jpeg" alt="Обложка">
+              <div class="upload-hint">
+                <!--<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                --> 
+              </div>
+            </div>
+
+            <div class="cover-title">MY LOVE</div>
+            <div class="cover-subtitle">В главной роли — Даулет</div>
+          </div>
+          <div class="start-hint">→ открой</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 1: ТЕБЕ / КТО ОН -->
+      <div class="spread" id="spread-1">
+        <div class="page-left">
+          <div class="stitch-left"></div>
+          <div class="whos-header" style="margin-bottom:10px;">ТЕБЕ...</div>
+          <div class="divider"></div>
+
+          <div class="photo-slot" style="aspect-ratio:3/4; width:70%; margin-bottom:14px;" onclick="triggerUpload('girl-photo')" id="girl-frame">
+            <!-- <input type="file" class="file-input" id="girl-photo" accept="image/*" onchange="loadPhoto(this,'girl-frame')">
+            -->
+            <img src="карточки.jpeg" alt="ОН">
+            <div class="upload-hint">
+            </div>
+          </div>
+
+          <textarea class="editable body-text" oninput="autoResize(this)">Жаным,
+Эта книга — наша история. История, которая началась с одной задачи по математике, а превратилась в биение одного сердца на двоих.
+Ты не просто случайно появился в моей жизни.
+Ты — мой самый долгий друг, мой тихий берег и мой самый правильный выбор ❤️✨</textarea>
+
+          <div class="page-num">01</div>
+        </div>
+
+        <div class="page-right">
+          <div class="whos-header">ЗНАЕТЕ<br>КТО <span>ОН?</span></div>
+          <div class="divider"></div>
+
+          <div class="photo-slot" style="aspect-ratio:3/4; width:100%; margin-bottom:14px;" onclick="triggerUpload('boy-photo')" id="boy-frame">
+            <!--<input type="file" class="file-input" id="boy-photo" accept="image/*" onchange="loadPhoto(this,'boy-frame')">
+            -->
+            <img src="zhan.jpeg" alt="ОН">
+            <div class="upload-hint">
+    
+            </div>
+          </div>
+
+          <textarea class="editable body-text" oninput="autoResize(this)">Для мира он — успешный парень, который в 21 год сам купил машину и расправился с долгами. Человек-кремень, Self-made man.
+
+Но для меня он — тот, кто выжил там, где другие бы сдались.
+Он никогда не протягивал руку к родителям, он сам стал опорой для себя и близких.
+Его предавали, но он не закрыл сердце на замок. В нем живет удивительное сочетание: невероятная мужская сила и самая светлая, добрая душа.
+В его глазах — вся его история. И это самая красивая история преодоления, которую я знаю ✨</textarea>
+
+          <div class="page-num">02</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 2: ДЕТСТВО / ФАКТЫ -->
+      <div class="spread" id="spread-2">
+        <div class="page-left">
+          <div class="stitch-left"></div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+            <div class="polaroid rotate-left">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child1-photo')" id="child1-frame">
+                <!--<input type="file" class="file-input" id="child1-photo" accept="image/*" onchange="loadPhoto(this,'child1-frame')">
+                -->
+                 <img src="детство1.jpeg" alt="Детство">
+                <div class="upload-hint" style="font-size:8px;">
+                  <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+                  его детство -->
+                </div>
+              </div>
+            </div>
+            <div class="polaroid rotate-right">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('child2-photo')" id="child2-frame">
+                <!-- <input type="file" class="file-input" id="child2-photo" accept="image/*" onchange="loadPhoto(this,'child2-frame')"> -->
+                <img src="детство2.jpeg" alt="Детство">
+                <div class="upload-hint" style="font-size:8px;">
+                  <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+                  моё детство -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="handwritten">Мы не спешили любить...</div>
+          <textarea class="editable body-text" oninput="autoResize(this)">Мы не влюбились с первого взгляда — мы учились друг другу.
+Мы подкалывали друг друга, поддерживали в трудные минуты, слушали и слышали.
+Мы видели друг друга в самые плохие дни.
+
+И только потом поняли: наши сердца уже давно всё решили за нас. ❤️</textarea>
+
+          <div style="text-align:right; margin-top:10px;">
+            <input class="inline-edit" style="width:130px; text-align:right; font-family:'Dancing Script',cursive; font-size:16px; color:var(--rose);" placeholder="дата">
+          </div>
+
+          <div class="page-num">03</div>
+        </div>
+
+        <div class="page-right">
+          <div class="handwritten" style="font-size:22px; line-height:1.2; margin-bottom:12px;">ФАКТЫ<br>О тебе ♥</div>
+          <div class="divider"></div>
+
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="До безумия любит свою машину"></div></div>
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Спящая красавица 🥰"></div></div>
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Любит вкусно покушать"></div></div>
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Достигатор"></div></div>
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Любимый будущий муж 😎"></div></div>
+          <div class="fact-item"><div class="fact-arrow">→</div><div class="fact-text"><input class="inline-edit" placeholder="Факт..."></div></div>
+
+          <div class="photo-slot" style="aspect-ratio:3/4; width:60%; margin-top:14px auto 0; " onclick="triggerUpload('fact-photo')" id="fact-frame">
+            <!-- <input type="file" class="file-input" id="fact-photo" accept="image/*" onchange="loadPhoto(this,'fact-frame')"> -->
+            
+             <img src="он2.jpeg" alt="ОН">
+            <div class="upload-hint">
+              <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"/></svg>
+              его фото -->
+            </div>
+          </div>
+
+          <div class="page-num">04</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 3: КАК ВСЁ НАЧАЛОСЬ / МЕСТА -->
+      <div class="spread" id="spread-3">
+        <div class="page-left">
+          <div class="stitch-left"></div>
+          <div class="section-title" style="font-size:20px;">Наш<br><span style="color:var(--rose);">первый миг</span></div>
+          <div class="divider"></div>
+
+          <div class="section-box">
+            <div class="section-box-label">Как всё началось?</div>
+            <textarea class="editable body-text" style="font-size:12.5px;" oninput="autoResize(this)">Любимый,
+
+Иногда мне кажется, что моё самое любимое произведение — это не фильм, не песня и даже не книга.
+Это мы.
+Наша история. Такая странная, смешная, медленная и одновременно невероятная.
+
+Кто бы вообще мог подумать, что всё начнётся с какой-то задачи по математике?
+
+Я поступила в университет, все учились онлайн, каждый жил будто в своём маленьком мире. Но почему-то именно тогда среди сотен людей жизнь столкнула меня с тобой. Сначала — просто сообщения. Потом созвоны. Потом разговоры по видео до ночи, когда уже давно не было никаких тем, но никто не хотел первым отключаться.
+
+И знаешь, что до сих пор смешит меня больше всего?
+То, как ты боялся нашей первой встречи.
+Ты ведь вообще не знал, как я выгляжу по-настоящему, и переживал, что «вдруг она окажется некрасивой». И вот однажды вечером ты спонтанно решил меня встретить. Без подготовки. Без идеального момента. Просто потому что захотел.
+
+А я до сих пор помню твой взгляд в ту секунду.
+Твоё облегчение.
+Будто ты выдохнул впервые за весь день.
+
+С того вечера всё и началось.
+
+Мы стали теми самыми друзьями, которые постоянно подкалывают друг друга, смеются с глупостей и одновременно незаметно собирают человека по кусочкам обратно. Мы поднимали самооценку друг другу раньше, чем признались в чувствах. Мы знали слабые стороны друг друга, но никогда не использовали их как оружие.
+
+И, наверное, именно поэтому всё получилось так по-настоящему.
+
+Четыре года.
+Четыре года мы были «просто друзьями». Хотя сейчас я понимаю — чувства, возможно, росли где-то очень тихо всё это время. Просто мы оба не умели тогда их услышать.
+
+А потом случился тот день.
+
+Я приехала из другого города после того, как мы не виделись больше года. И что-то изменилось буквально за секунду. Не было громких признаний или киношных сцен. Просто в глазах появилась та самая искра, которой не было все предыдущие четыре года.
+
+И в тот момент будто поменялся весь сюжет нашей жизни.
+
+Сейчас нам семь месяцев.
+Семь месяцев, как «мы» стали чем-то большим, чем дружба. И иногда мне всё ещё трудно поверить, что человек, с которым я столько лет шутила и спорила, теперь держит меня за руку так, будто отпускать уже никогда не собирается.
+
+Ты сделал мне самое красивое предложение.
+И теперь на моей руке блестит кольцо — не просто украшение, а ощущение того, что меня выбрали. Осознанно. По-настоящему.
+
+А через несколько дней встретятся самые важные люди в нашей жизни — наши мамы и папы. И от одной этой мысли у меня внутри всё замирает. Потому что это уже не просто история о двух людях. Это история о будущем. О семье. О доме, который мы начинаем строить вместе.
+
+Спасибо тебе…
+За то, что сначала стал моим другом.
+За то, что никогда не торопил чувства.
+За то, что рядом с тобой мне не нужно притворяться лучше, чем я есть.
+За то, что даже спустя годы общения ты всё ещё смотришь на меня так, будто нашёл что-то очень ценное.
+
+Если честно, я не знаю, что ждёт нас через 10, 20 или 40 лет. Но я точно знаю одно:
+из всех случайностей в моей жизни ты оказался самой красивой. ❤️</textarea>
+          </div>
+
+          <div style="display:flex; gap:4px; background:#111; padding:4px; border-radius:2px; margin-top:10px;">
+            <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film1')" id="film1-frame">
+              <!-- <input type="file" class="file-input" id="film1" accept="image/*" onchange="loadPhoto(this,'film1-frame')"> -->
+              <img src="мы1.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
+            </div>
+            <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film2')" id="film2-frame">
+              <!-- <input type="file" class="file-input" id="film2" accept="image/*" onchange="loadPhoto(this,'film2-frame')"> -->
+              <img src="мы2.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
+            </div>
+            <div class="photo-slot" style="height:58px; flex:1;" onclick="triggerUpload('film3')" id="film3-frame">
+              <!-- <input type="file" class="file-input" id="film3" accept="image/*" onchange="loadPhoto(this,'film3-frame')"> -->
+              <img src="мы3.jpg" alt="ОН">
+              <!-- <div class="upload-hint" style="font-size:8px;">📷</div> -->
+            </div>
+          </div>
+
+          <div class="page-num">05</div>
+        </div>
+
+        <div class="page-right">
+          <div class="handwritten" style="font-size:17px; text-align:center; margin-bottom:10px;">Места, где всё случилось</div>
+
+          <div class="map-grid">
+            <div class="map-item">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place1')" id="place1-frame">
+                <!-- <input type="file" class="file-input" id="place1" accept="image/*" onchange="loadPhoto(this,'place1-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта2.jpeg" alt="ОН">
+              </div>
+              <div class="map-label">наша первая встреча</div>
+            </div>
+            <div class="map-item">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place2')" id="place2-frame">
+                <!-- <input type="file" class="file-input" id="place2" accept="image/*" onchange="loadPhoto(this,'place2-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта1.jpeg" alt="ОН">
+              </div>
+              <div class="map-label">начало нашей истории</div>
+            </div>
+            <div class="map-item">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place3')" id="place3-frame">
+                <!-- <input type="file" class="file-input" id="place3" accept="image/*" onchange="loadPhoto(this,'place3-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта3.jpeg" alt="ОН">
+              </div>
+              <div class="map-label">наше любимое место</div>
+            </div>
+            <div class="map-item">
+              <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('place4')" id="place4-frame">
+                <!-- <input type="file" class="file-input" id="place4" accept="image/*" onchange="loadPhoto(this,'place4-frame')">
+                <div class="upload-hint" style="font-size:8px;">📍</div> -->
+                <img src="карта3.jpeg" alt="ОН">
+              </div>
+              <div class="map-label">наш первый поцелуй</div>
+            </div>
+          </div>
+
+          <textarea class="editable body-text" style="margin-top:12px; font-size:12px;" oninput="autoResize(this)" placeholder="Эти места навсегда в моём сердце..."></textarea>
+
+          <div class="page-num">06</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 4: ПОЧЕМУ / РАХМЕТ -->
+      <div class="spread" id="spread-4">
+               <div class="page-left">
+          <div class="stitch-left"></div>
+          <div class="section-title" style="font-size:20px; margin-bottom:6px;">Почему<br><span style="font-style:italic; color:var(--rose);">моё сердце</span></div>
+          <div class="section-title" style="font-size:17px; margin-bottom:12px;">выбрало тебя?</div>
+ 
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+            <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('why1')" id="why1-frame">
+              <!-- <input type="file" class="file-input" id="why1" accept="image/*" onchange="loadPhoto(this,'why1-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'why1-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="кок тобе.jpeg" alt="ОН">
+            </div>
+            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('why2')" id="why2-frame">
+              <!-- <input type="file" class="file-input" id="why2" accept="image/*" onchange="loadPhoto(this,'why2-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'why2-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы зеркало.jpeg" alt="ОН">
+            </div>
+          </div>
+
+          <textarea class="editable body-text" oninput="autoResize(this)">1. За то, что с тобой я могу быть собой — настоящей, смешной, любой.
+2. За то, что ты умеешь слушать, даже когда мне просто нужно выговориться.
+3. За то, что ты создаёшь мою улыбку из ничего.
+4. За твою верность — ты был рядом целых четыре года, прежде чем стать моим.
+5. За то, что, будучи лучшим другом, ты сумел завоевать моё сердце.
+6. За то, что рядом с тобой я чувствую себя «дома».</textarea>
+
+          <div class="page-num">07</div>
+        </div>
+
+          <div class="page-right">
+          <div class="handwritten" style="font-size:22px; margin-bottom:12px;">Рахмет, жаным..</div>
+ 
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+            <div class="photo-slot" style="aspect-ratio:3/4; width:100%;" onclick="triggerUpload('thanks1')" id="thanks1-frame">
+              <!-- <input type="file" class="file-input" id="thanks1" accept="image/*" onchange="loadPhoto(this,'thanks1-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'thanks1-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div> -->
+              <img src="сноуборд.jpeg" alt="ОН">
+            </div>
+            <div class="photo-slot" style="aspect-ratio:3/4;" onclick="triggerUpload('thanks2')" id="thanks2-frame">
+              <!-- <input type="file" class="file-input" id="thanks2" accept="image/*" onchange="loadPhoto(this,'thanks2-frame')">
+              <button class="clear-photo-btn" onclick="clearPhoto(event,'thanks2-frame')">✕</button>
+              <div class="upload-hint" style="font-size:8px;">📷 наши фото</div> -->
+              <img src="мы торт.jpeg" alt="ОН">
+            </div>
+          </div>
+
+          <div style="font-size:9px; letter-spacing:1px; color:var(--rose); margin-bottom:8px; text-transform:uppercase; font-family:'Cormorant Garamond',serif;">Рахмет саған...</div>
+          <ul class="love-list">
+            <li><input class="inline-edit" placeholder="Жаныңда өзімді қауіпсіз әрі бақытты сезіндіргенің үшін"></li>
+            <li><input class="inline-edit" placeholder="Үнсіз-ақ түсіне білетінің үшін"></li>
+            <li><input class="inline-edit" placeholder="Күлкіңмен жүрегімді жылытқаның үшін"></li>
+            <li><input class="inline-edit" placeholder="Қамқорлығың мен мейірімің үшін"></li>
+            <li><input class="inline-edit" placeholder="Армандарыма сенгенің үшін"></li>
+            <li><input class="inline-edit" placeholder="Қолымнан ұстап, алға жетелегенің үшін"></li>
+            <li><input class="inline-edit" placeholder="Жай ғана бар болғаның үшін"></li>
+          </ul>
+
+          <div class="page-num">08</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 5: МОЯ ЛЮБОВЬ / ПИСЬМО -->
+      <div class="spread" id="spread-5">
+        <div class="page-left">
+          <div class="stitch-left"></div>
+          <div class="handwritten" style="font-size:17px; margin-bottom:4px;">Моя любовь —</div>
+          <div class="section-title" style="font-style:italic; color:var(--rose); font-size:15px; margin-bottom:10px;">это забота</div>
+          <div class="divider"></div>
+
+          <textarea class="editable body-text" style="font-size:12.5px;" oninput="autoResize(this)">Моя любовь начинается с внимания.
+С простых мелочей, которые кажутся незаметными со стороны, но для меня они — самое важное.
+Мне хочется понимать тебя: что у тебя на душе, что тревожит, что радует, что происходит внутри твоего спокойного и глубокого мира.
+
+Когда тебе нелегко, я интуитивно чувствую это.
+И я остаюсь рядом.
+Не чтобы спасать или учить, а чтобы просто быть
+твоим тихим плечом:
+выслушать, обнять, поддержать, разделить с тобой то, что ты несёшь внутри.
+
+И каждый вечер, когда я говорю тебе «я люблю тебя», это мой естественный порыв, моё тепло, которое хочется отдавать тебе снова и снова.
+
+Через эти слова я будто напоминаю:
+что ты мне важен, что я рядом в любой момент,
+что у тебя всегда есть место, где тебя поймут и где тебе безопасно.</textarea>
+
+          <div class="page-num">09</div>
+        </div>
+
+        <div class="page-right">
+          <div style="font-size:9px; letter-spacing:3px; color:var(--warm-gray); text-transform:uppercase; margin-bottom:8px; font-family:'Cormorant Garamond',serif;">Письмо из будущего</div>
+          <div class="handwritten" style="font-size:14px; margin-bottom:10px;">Жаным,</div>
+
+          <textarea class="editable body-text" style="font-size:11.5px;" oninput="autoResize(this)">Пишу тебе из нашего будущего. Сейчас поздний вечер, ты опять уснул раньше меня прямо на диване под какой-то фильм, который «точно досмотришь». Спойлер: не досмотришь. Никогда.
+А я сижу рядом, смотрю на тебя и думаю, как странно устроена жизнь — когда-то мы были просто двумя людьми, которые ещё не знали, насколько сильно смогут изменить мир друг друга.
+
+Через 5–10 лет ты станешь ещё красивее. Не той идеальной картинной красотой, а настоящей — уверенной, спокойной, тёплой. У тебя появится этот взгляд человека, который уже многое пережил, но не стал холодным. И знаешь, что мне нравится больше всего? Даже спустя годы ты всё так же будешь смеяться над своими же шутками громче всех.
+
+У нас впереди столько моментов, о которых ты пока даже не подозреваешь.
+
+Мы будем ехать ночью в машине без цели, спорить из-за музыки и в итоге петь вдвоём что-то максимально странное и старое.
+Будем делать ремонт и чуть не разведёмся из-за того, какого цвета должны быть шторы. (Ты проиграешь, смирись заранее.)
+Будем заказывать еду и говорить «только ничего лишнего», а через 20 минут на столе окажется еды на десятерых.
+Будем уставшими, сонными, иногда раздражёнными, но всё равно искать друг друга взглядом в комнате, как будто дом — это не место, а человек.
+
+Ты ещё не знаешь, но однажды появится фото, которое я буду хранить как сокровище. Ты там не позируешь, не смотришь в камеру — просто улыбаешься мне на кухне. И именно тогда я окончательно пойму: вот она, моя жизнь. Не идеальная, не глянцевая, а настоящая.
+
+А ещё у меня для тебя несколько предсказаний из будущего:
+
+— Ты всё-таки начнёшь говорить: «ой, спина».
+— У тебя появится любимая кружка, и ты будешь злиться, если я возьму её первой.
+— Мы минимум один раз потеряемся в отпуске из-за твоего «я и так знаю дорогу».
+— Ты будешь делать вид, что не любишь фотографии, но именно у тебя в телефоне окажется 700 моих случайных фото.
+— И да… ты всё так же будешь смотреть на меня иногда так, будто влюбился только вчера.
+
+Знаешь, что самое удивительное?
+В будущем не будет какого-то одного грандиозного счастливого дня. Счастье окажется в мелочах: в сонных разговорах утром, в сообщениях «доехал?», в твоей руке на моей талии, пока я готовлю, в привычке делиться всем первым именно друг с другом.
+
+Я не знаю, как именно мы придём к этому будущему. Наверное, будут сложные дни. Обиды. Усталость. Ошибки. Но я знаю одно: если в конце дня мы всё равно выбираем друг друга — значит, мы справимся.
+
+И когда-нибудь, спустя много лет, я посмотрю на тебя и подумаю:
+«Как хорошо, что тогда всё началось именно с тебя».
+
+С любовью,
+твоя девочка из будущего ❤️</textarea>
+
+          <div class="page-num">10</div>
+        </div>
+      </div>
+
+      <!-- SPREAD 6: ГАЛЕРЕЯ / ФИНАЛ -->
+      <div class="spread" id="spread-6">
+        <div class="page-left">
+          <div class="stitch-left"></div>
+          <div class="handwritten" style="font-size:19px; margin-bottom:12px;">Наши моменты...</div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal1')" id="gal1-frame">
+              <!-- <input type="file" class="file-input" id="gal1" accept="image/*" onchange="loadPhoto(this,'gal1-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы глина.jpeg" alt="ОН">
+            </div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal2')" id="gal2-frame">
+              <!-- <input type="file" class="file-input" id="gal2" accept="image/*" onchange="loadPhoto(this,'gal2-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="сноуборд2.jpeg" alt="ОН">
+            </div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal3')" id="gal3-frame">
+              <!-- <input type="file" class="file-input" id="gal3" accept="image/*" onchange="loadPhoto(this,'gal3-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы предложение.jpeg" alt="ОН">
+            </div>
+            <div class="photo-slot" style="aspect-ratio:3/4;width:100%;" onclick="triggerUpload('gal4')" id="gal4-frame">
+              <!-- <input type="file" class="file-input" id="gal4" accept="image/*" onchange="loadPhoto(this,'gal4-frame')">
+              <div class="upload-hint" style="font-size:8px;">📷</div> -->
+              <img src="мы др.jpeg" alt="ОН">
+            </div>
+          </div>
+
+          <div class="page-num">11</div>
+        </div>
+
+        <div class="page-right" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+          <div style="font-size:42px; margin-bottom:18px; animation: heartbeat 1.5s ease-in-out infinite;">❤️</div>
+
+          <div class="handwritten" style="font-size:20px; margin-bottom:12px; color:var(--deep-rose);">Махаббатқа тіккен ең<br>соңғы ставкам сен болшы</div>
+
+          <div class="divider" style="margin:14px auto; width:46px;"></div>
+
+          <textarea class="editable body-text" style="text-align:center; font-size:12px; color:var(--warm-gray);" oninput="autoResize(this)" placeholder="Саған деген сезімді сөзбен жеткізу қиын... Бірақ осы кітаптың әр беті — менің жүрегімнің тіршілігі."></textarea>
+
+          <div style="margin-top:16px;">
+            <input class="inline-edit" style="text-align:center; font-family:'Dancing Script',cursive; font-size:19px; color:var(--rose);" placeholder="Саған арналады">
+          </div>
+          <div style="font-size:22px; margin-top:8px;">💋</div>
+          <div style="margin-top:18px;">
+            <input class="inline-edit" style="text-align:center; font-size:10px; letter-spacing:3px; color:var(--gold);" placeholder="7 мая 2026г">
+          </div>
+
+          <div class="page-num">12</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn" id="prev-btn" onclick="prevPage()" disabled>←</button>
+  <div class="page-indicator" id="page-indicator">Обложка</div>
+  <button class="nav-btn" id="next-btn" onclick="nextPage()">→</button>
+</div>
+
+<script>
+const hc = document.getElementById('hearts-container');
+for(let i=0;i<14;i++){
+  const h=document.createElement('div');
+  h.className='heart-bg';
+  h.innerHTML=['♥','❤','♡'][Math.floor(Math.random()*3)];
+  h.style.cssText=`left:${Math.random()*100}vw;font-size:${8+Math.random()*14}px;animation-duration:${14+Math.random()*18}s;animation-delay:${Math.random()*20}s;`;
+  hc.appendChild(h);
+}
+
+let current=0;
+const spreads=document.querySelectorAll('.spread');
+const total=spreads.length;
+const labels=['Обложка','01 — 02','03 — 04','05 — 06','07 — 08','09 — 10','11 — 12'];
+
+function showSpread(idx){
+  spreads.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  document.querySelectorAll('.page-left,.page-right').forEach(p=>p.scrollTop=0);
+  document.getElementById('page-indicator').textContent=labels[idx]||(idx+1);
+  document.getElementById('prev-btn').disabled=idx===0;
+  document.getElementById('next-btn').disabled=idx===total-1;
+}
+
+function nextPage(){ if(current<total-1){current++;showSpread(current);} }
+function prevPage(){ if(current>0){current--;showSpread(current);} }
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') nextPage();
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') prevPage();
+});
+
+let tX=0;
+document.addEventListener('touchstart',e=>{tX=e.touches[0].clientX;});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tX;
+  if(Math.abs(dx)>60){dx<0?nextPage():prevPage();}
+});
+
+function triggerUpload(id){ document.getElementById(id).click(); }
+
+function loadPhoto(input,frameId){
+  if(!input.files||!input.files[0]) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const frame=document.getElementById(frameId);
+    frame.classList.add('has-photo');
+    const ex=frame.querySelector('img'); if(ex) ex.remove();
+    const img=document.createElement('img');
+    img.src=e.target.result;
+    frame.insertBefore(img,frame.firstChild);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=el.scrollHeight+'px';
+}
+document.querySelectorAll('textarea').forEach(ta=>{
+  autoResize(ta);
+  ta.addEventListener('input',()=>autoResize(ta));
+});
+</script>
+</body>
+</html>
